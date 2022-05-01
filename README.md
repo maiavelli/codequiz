@@ -15,7 +15,7 @@ A short quiz meant to test basic coding knowledge.
 - Use this application to test your knowledge of basic programming knowledge and compete for the best score.
 
 ## Screenshot of Deployed Application
-![](./Assets.codequiz.gif)
+![screenshot](./Assets/codequiz.gif)
 
 ## Link to Deployed Application
 
