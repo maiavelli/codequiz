@@ -3,8 +3,10 @@
 let startButton = $('#start-btn');
 let startContainer = $('.start-container');
 
-//timer variables
+//timer and highscore container variable
 let topContainer = $('.top-container');
+
+//timer variables
 let timer = $('#timer');
 let secondsLeft = 75;
 
@@ -31,15 +33,24 @@ let highscoreEl = $('#highscore');
 let highscore = 0; 
 highscoreEl.text('Score: ' + highscore);
 
+//end page variables
+let endPage = $('.highscore-page');
+let endScore = $('#scoreLanding');
+let saveButton = $('#saveScoreBtn');
+let replayButton = $('#replayBtn');
+let homeButton = $('#homeBtn');
+
+
 //start game and timer
 startButton.on('click', startGame);
-startButton.on('click', setTime);
+
 
 function startGame() {
     console.log('Started');
     startContainer.addClass('hide');
     topContainer.removeClass('hide');
     questionContainer.removeClass('hide');
+    setTime();
     setNextQuestion(index);
 }
 
@@ -73,6 +84,16 @@ const questions = [
             {text: 'curly brackets', correct: false},
             {text: 'parentheses', correct: true},
             {text: 'square brackets', correct: true},
+        ]
+    },
+
+    {
+        question: 'What does HTML stand for?',
+        answers: [
+            {text: 'hyper trainer marking language', correct: false},
+            {text: 'happy turtles munching lettuce', correct: false},
+            {text: 'hyper text markup leveler', correct: false},
+            {text: 'hyper text markup language', correct: true},
         ]
     }
 
@@ -109,14 +130,25 @@ choiceListEl.on("click", function(event) {
     } else {
         //if wrong, decrease time by 10 seconds
         secondsLeft = secondsLeft - 10;
-        timer.text('Time Remaining: ' + secondsLeft);
-        
+        timer.text('Time Remaining: ' + secondsLeft);    
     }
     // create a condition to stop index from iterating
     // if end condition true, go to high score page
     // else iterate
     // go to next question
+
+    if (index === 3){
+        questionContainer.addClass('hide');
+        topContainer.addClass('hide');
+        endPage.removeClass('hide');
+        endScore.text("Your Score: " + highscore);
+    }
+
+    else {
     index++
     setNextQuestion(index);
-
+    }
 })
+
+//end page button listeners
+replayButton.on('click', startGame);
