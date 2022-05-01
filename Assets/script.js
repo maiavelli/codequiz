@@ -9,10 +9,11 @@ let topContainer = $('.top-container');
 //timer variables
 let timer = $('#timer');
 let secondsLeft = 75;
+var timerInterval;
 
 //timer function
 function setTime() {
-    let timerInterval = setInterval(function(){
+        timerInterval = setInterval(function(){
         secondsLeft--;
         timer.text("Time Remaining: " + secondsLeft);
 
@@ -32,6 +33,8 @@ let choiceListEl = $('.answers');
 let highscoreEl = $('#highscore');
 let highscore = 0; 
 highscoreEl.text('Score: ' + highscore);
+
+
 
 //end page variables
 let endPage = $('.highscore-page');
@@ -142,6 +145,8 @@ choiceListEl.on("click", function(event) {
         topContainer.addClass('hide');
         endPage.removeClass('hide');
         endScore.text("Your Score: " + highscore);
+        clearInterval(timerInterval);
+        console.log(timerInterval);
     }
 
     else {
@@ -151,4 +156,23 @@ choiceListEl.on("click", function(event) {
 })
 
 //end page button listeners
+//replay game
 replayButton.on('click', startGame);
+//return to home page
+homeButton.on('click', function(){
+    startContainer.removeClass('hide');
+    topContainer.addClass('hide');
+    questionContainer.addClass('hide');
+    endPage.addClass('hide');
+})
+
+
+//highscore list storage
+const numberOfScores = 10;
+
+let playerName = document.getElementById('name').value;
+console.log(playerName);
+let playerNameStorage = localStorage.getItem("playerName");
+let mostRecentScore = localStorage.getItem("highscore");
+
+
