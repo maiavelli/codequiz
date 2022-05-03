@@ -53,6 +53,8 @@ function startGame() {
     startContainer.addClass('hide');
     topContainer.removeClass('hide');
     questionContainer.removeClass('hide');
+    index = 0;
+    secondsLeft = 75;
     setTime();
     setNextQuestion(index);
 }
@@ -166,13 +168,15 @@ homeButton.on('click', function(){
     endPage.addClass('hide');
 })
 
+//save score
+saveButton.on('click', saveHighScore());
 
 //highscore list storage
-const numberOfScores = 10;
 
-let playerName = document.getElementById('name').value;
-console.log(playerName);
-let playerNameStorage = localStorage.getItem("playerName");
-let mostRecentScore = localStorage.getItem("highscore");
+
+
+
+
+
 
 
